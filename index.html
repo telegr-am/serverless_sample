@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>Telegram/Serverless Sample Site</title>
+
+    <link type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet"/>
+
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT" crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+
+    <script>
+     function checkTime() {
+         $("#the_time").text("Asking the server for the time...");
+         $.get("/api/time", function(data) {
+             $("#the_time").text("The server sez the time is: " + data.message);
+         });
+     }
+
+     function sayHello() {
+         $("#the_greeting").text("Asking the server for the greeting...");
+
+         // post the message to the current site's /api/hello and it will
+         // be proxied to the serverless application
+         $.ajax({
+             'type': 'POST',
+             'url': "/api/hello",
+             'contentType': 'application/json',
+             'data': JSON.stringify({name: $("#your_name").val()}),
+             'dataType': 'json',
+             'success': function(data) {
+                $("#the_greeting").text("The server sez: "+data.message);
+             }
+         });
+     }
+    </script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://telegr.am">
+                Home
+            </a>
+        </div>
+
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container">
+    <div class="content">
+        <div>
+            <div id="the_time"></div>
+            <button onclick="checkTime()">
+                Ask the server for the time
+            </button>
+        </div>
+        <hr>
+        <div>
+            <div id="the_greeting"></div>
+            <div>
+                Your Name:
+                <input id="your_name">
+                <br>
+                <button onclick="sayHello()">
+                    Ask the server for a greeting
+                </button>
+            </div>
+    </div>
+
+</div>
+<!-- /container -->
+<!--scripts-->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

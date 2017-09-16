@@ -1,0 +1,8 @@
+# Configure your AWS IAM credentials and place them in this
+# file. Then, in your Telegram project, click on the "Secrets"
+# button to get the key and initialization vector. Then:
+# openssl aes-256-cbc -a -in serverless_conf -out serverless_conf.telegram.enc \
+#     -K '<ENTER KEY HERE>' -iv '<ENTER IV HERE>'
+
+export AWS_ACCESS_KEY_ID=<your-key-here>
+export AWS_SECRET_ACCESS_KEY=<your-secret-key-here>
