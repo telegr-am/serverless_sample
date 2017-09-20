@@ -1,7 +1,14 @@
 # Sample Telegram/Serverless site
 
-This is an example of a Telegram site that also includes a
-[Serverless](https://serverless.com) component.
+Deploy your [Serverless](https://serverless.com) code and a Telegram static web site as an atomic unit.
+
+Why?
+
+* URL proxying from site to AWS so no CORS and stable URLs
+* Atomic deploys of web site and Serverless code -- once and done
+* Makes your workflow that much easier so you can focus on the app.
+
+## How does it work
 
 The Telegram site is [rendered](https://github.com/telegr-am/renderers)
 using the `passthru` renderer which just copies all the files from
